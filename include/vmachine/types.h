@@ -22,31 +22,28 @@
  * SOFTWARE.
  */
 
-#ifndef VMACHINE_MEMORY_H_
-#define VMACHINE_MEMORY_H_
+#ifndef VMACHINE_TYPES_H_
+#define VMACHINE_TYPES_H_
 
-	#include <vmachine/types.h>
-
-	/**
-	 * @brief Initializes the memory.
-	 */
-	extern void memory_init(void);
+	/* External */
+	#include <stdint.h>
 
 	/**
-	 * @brief Reads a word from the memory.
-	 *
-	 * @param addr Target address.
-	 *
-	 * @returns The word at the requested address.
+	 * @brief Sizes for Machine Types (in bytes)
 	 */
-	extern word_t memory_read(addr_t addr);
+	/**@{*/
+	#define WORD_SIZE_LOG2 2                /**< log2(Word ) */
+	#define WORD_SIZE (1 << WORD_SIZE_LOG2) /**< Word        */
+	/**@}*/
 
 	/**
-	 * @brief Writes a word to the memory.
-	 *
-	 * @param addr Target address.
-	 * @param word Word to write.
+	 * @name Machine Types
 	 */
-	extern void memory_write(addr_t addr, word_t word);
+	/**@{*/
+	typedef uint32_t addr_t;  /**< Address    */
+	typedef uint16_t hword_t; /**< Half-Word   */
+	typedef uint32_t word_t;  /**< Word        */
+	typedef uint64_t dword_t; /**< Double-Word */
+	/**@}*/
 
-#endif /* VMACHINE_MEMORY_H_ */
+#endif /* VMACHINE_TYPES_H_ */

@@ -27,9 +27,7 @@
 /**
  * The engine_run() function translates a binary code into another.
  */
-uint32_t engine_run(uint32_t instruction)
+word_t engine_run(uint32_t instruction)
 {
-	/* TODO */
-
 	return (instruction);
 }
