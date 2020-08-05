@@ -22,10 +22,63 @@
  * SOFTWARE.
  */
 
+/* External */
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+/* Ours */
+#include <vmachine.h>
+#include <utils.h>
+#include <asm.h>
+
 /**
- * @brief Loads a binary.
+ * @brief Loads an assembly file.
  */
-void load(void)
+void load_asmfile(const char *filename, addr_t addr)
 {
-	/* TODO */
+	FILE *input;                       /* Input File              */
+	const char *errorstr;              /* Error String            */
+	//static const char *delim = " ,()"; /* Delimitating characters */
+
+	ssize_t nread;
+	size_t len = 0;
+	char *line = NULL;
+
+	/* Cannot open input file. */
+	if ((input = fopen(filename, "r")) == NULL)
+	{
+		errorstr = "cannot open asm file";
+		error(errorstr);
+	}
+
+	/* Read input file. */
+	while ((nread = getline(&line, &len, input)) != -1)
+	{
+		//char *token;
+		uint32_t instruction;
+
+		/* Remove newline. */
+		line[nread - 1] = '\0';
+
+		/* Parse line. */
+		debug(line);
+
+		instruction = assembler(line);
+
+		memory_write(addr, instruction);
+		addr += WORD_SIZE;
+	}
+
+	/* House keeping. */
+	free(line);
+}
+
+/**
+ * The load() function loads the memory of the virtual machine with the
+ * contents of the file named @p filename.
+ */
+void load(const char *filename, addr_t addr)
+{
+	load_asmfile(filename, addr);
 }
