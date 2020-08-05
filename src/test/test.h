@@ -22,61 +22,15 @@
  * SOFTWARE.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <vmachine.h>
+#ifndef _ASSEMBLER_MIPS_32_TEST_H
+#define _ASSEMBLER_MIPS_32_TEST_H
 
-/* Import test drivers. */
-extern void test_mips32 (void);
-
-/**
- * @brief Command Line Arguments
- */
-struct
-{
-	const char *filename; /**< Name of Input File */
-} args;
-
-/**
- * @brief Prints program usage and exits.
- */
-static void usage(void)
-{
-	printf("usage: vmachine input [options]\n");
-	exit(EXIT_SUCCESS);
-}
-
-/**
- * @brief Parses command line arguments.
- *
- * @param argc Argument count.
- * @param argv Argument list.
- */
-void args_parse(int argc, const char *argv[])
-{
-	/* Missing input file. */
-	if (argc < 2)
+	struct test 
 	{
-		printf("missing input file\n");
-		usage();
-	}
+		void (*test_fn)(void);
+		const char *name;
+	};
 
-	args.filename = argv[1];
-}
+ 	extern void test_mips32 (void);
 
-/**
- * @brief Simulates a manycore processor.
- */
-int main(int argc, const char *argv[])
-{
-
-#ifndef NDEBUG
-	test_mips32();
 #endif
-
-	args_parse(argc, argv);
-
-	vmachine_start(args.filename);
-
-	return (EXIT_SUCCESS);
-}
