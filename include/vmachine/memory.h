@@ -33,6 +33,11 @@
 	extern void memory_init(void);
 
 	/**
+	 * @brief Shutdowns the memory.
+	 */
+	extern void memory_shutdown(void);
+
+	/**
 	 * @brief Reads a word from the memory.
 	 *
 	 * @param addr Target address.
