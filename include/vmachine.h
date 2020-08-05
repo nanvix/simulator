@@ -25,10 +25,18 @@
 #ifndef VMACHINE_H_
 #define VMACHINE_H_
 
+	/* Ours */
+	#include <config/vmachine.h>
+	#include <vmachine/engine.h>
+	#include <vmachine/memory.h>
+	#include <vmachine/types.h>
+
 	/**
 	 * @brief Starts the virtual machine.
+	 *
+	 * @param filename Name of the input file to boot the machine.
 	 */
-	extern void vmachine_start(void);
+	extern void vmachine_start(const char *filename);
 
 	/**
 	 * @brief Shutdowns the virtual machine.

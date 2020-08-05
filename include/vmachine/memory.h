@@ -25,7 +25,7 @@
 #ifndef VMACHINE_MEMORY_H_
 #define VMACHINE_MEMORY_H_
 
-	#include <stdint.h>
+	#include <vmachine/types.h>
 
 	/**
 	 * @brief Initializes the memory.
@@ -33,8 +33,25 @@
 	extern void memory_init(void);
 
 	/**
-	 * @brief Reads a word from the memory.
+	 * @brief Shutdowns the memory.
 	 */
-	extern uint32_t memory_read(uint32_t addr);
+	extern void memory_shutdown(void);
+
+	/**
+	 * @brief Reads a word from the memory.
+	 *
+	 * @param addr Target address.
+	 *
+	 * @returns The word at the requested address.
+	 */
+	extern word_t memory_read(addr_t addr);
+
+	/**
+	 * @brief Writes a word to the memory.
+	 *
+	 * @param addr Target address.
+	 * @param word Word to write.
+	 */
+	extern void memory_write(addr_t addr, word_t word);
 
 #endif /* VMACHINE_MEMORY_H_ */

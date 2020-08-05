@@ -22,22 +22,56 @@
  * SOFTWARE.
  */
 
-#include <stdint.h>
+/* External */
+#include <stdlib.h>
+
+/* Ours */
+#include <vmachine.h>
+#include <utils.h>
+
+/**
+ * @brief Memory.
+ */
+static word_t *memory = NULL;
 
 /**
  * The memory_init() function intializes the underlying memory.
  */
 void memory_init(void)
 {
-	/* TODO: implement this function */
+	memory = smalloc(MEMORY_SIZE);
+}
+
+/**
+ * The memory_shutdown() function shutdowns the memory component.
+ */
+void memory_shutdown(void)
+{
+	/* Uninitialized memory. */
+	if (memory == NULL)
+		error("uninitialzied memory");
+
+	free(memory);
 }
 
 /**
  * The memory_read() function reads a word from the memory.
  */
-uint32_t memory_read(uint32_t addr)
+word_t memory_read(addr_t addr)
 {
-	/* TODO: implement this function */
+	if (addr >= MEMORY_SIZE)
+		error("memory out of range");
 
-	return (addr);
+	return (*(memory + (addr >> WORD_SIZE_LOG2)));
+}
+
+/**
+ * The memory_write() function writes a word to the memory.
+ */
+void memory_write(addr_t addr, word_t word)
+{
+	if (addr >= MEMORY_SIZE)
+		error("memory out of range");
+
+	*(memory + (addr >> WORD_SIZE_LOG2)) = word;
 }
