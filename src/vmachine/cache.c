@@ -22,9 +22,8 @@
  * SOFTWARE.
  */
 
-#include <vmachine/memory.h>
-#include <vmachine/engine.h>
-#include <stdint.h>
+/* Ours */
+#include <vmachine.h>
 
 /**
  * The icache_read() function reads a word from the instruction cache.

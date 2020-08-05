@@ -22,7 +22,8 @@
  * SOFTWARE.
  */
 
-#include <stdint.h>
+/* Ours */
+#include <vmachine.h>
 
 /**
  * The engine_run() function translates a binary code into another.

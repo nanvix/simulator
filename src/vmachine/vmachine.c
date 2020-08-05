@@ -22,6 +22,9 @@
  * SOFTWARE.
  */
 
+#include <loader.h>
+#include <vmachine.h>
+
 /**
  * The vmachine_start() function starts the virtual machine.
  */
